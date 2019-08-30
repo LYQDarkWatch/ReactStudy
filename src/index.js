@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom'
-
+import './index.css';
 
 class Main extends React.Component{
     constructor(props){
@@ -12,8 +12,9 @@ class Main extends React.Component{
                     name:"",
                     description:"",
                     forks:"",
-                    owener:{
-                        login:""
+                    owner:{
+                        login:"",
+                        avatar_url:""
                     }
                 }
             ],
@@ -33,19 +34,40 @@ class Main extends React.Component{
     }
 
     render() {
+        const divstyle = {
+            
+            width:'400px',
+            height:'350px',
+            backgroundColor:'white',
+            fontSize:'15px',
+            textAlign:'center',                     
+        }
+        
         return(
             <div>
-                <h1>axios获取数据</h1>
-                <ul>
                     {
                         this.state.list.map( (value,key) =>{
                            return(
-                           <li key={key}>{value.name}</li>
+
+                           <div style={divstyle} id='one'>
+                           <div id='two'>
+                           <div id="logo" style={{display:'inline-block'}}><img src={value.owner.avatar_url} /></div>
+                           <div id='name' style={{display:'inline-block'}}><span2>{value.name}</span2></div>
+                           <div id='star' style={{display:'inline-block'}}><span>{value.forks}</span></div>
+                           </div>
+                           <div id='fenge' />
+                           <div  id='three'>
+                           <div id='descrip'>{value.description}</div>
+                           </div>
+                           <div id='fenge'/>
+                           <div id='four'>
+                           <span1>Owner:{value.owner.login}</span1>
+                           </div>
+                           </div>
+                       
                            )
                         })
                     }
-                </ul>
-                <hr/>
             </div>
         )
     }
